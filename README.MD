@@ -1,2 +1,3 @@
 # PURUPUROS
 
+Proper readme soon.
