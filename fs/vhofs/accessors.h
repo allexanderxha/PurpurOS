@@ -7,34 +7,27 @@
  *
  * @see https://github.com/torvalds/linux/blob/master/fs/btrfs/accessors.h
  *
- * @todo: Rewrite the code to be more optimal.
- * @todo: Rename core file system to VHOFS.
- *
  * Copyright (C) 2026 Allexander B.
  * All rights reserved.
  */
 
-#ifndef BTRFS_ACCESSORS_H
-#define BTRFS_ACCESSORS_H
- 
-#include <linux/unaligned.h>
-#include <linux/stddef.h>
-#include <linux/types.h>
-#include <linux/align.h>
-#include <linux/build_bug.h>
-#include <linux/compiler.h>
-#include <linux/string.h>
-#include <linux/mm.h>
-#include <uapi/linux/btrfs_tree.h>
-#include "fs.h"
-#include "extent_io.h"
+#ifndef VHOFS_ACCESSORS_H
+#define VHOFS_ACCESSORS_H
+
+/* Basic type definitions for VHOFS */
+typedef unsigned char u8;
 
 /*
- * Forward declaration of struct extend_buffer.
- * This allows pointers to this structure to be used without
- * including its full definition here.
+ * Struct extent_buffer definition for VHOFS.
+ * This is a simplified version for the accessor functions.
  */
-struct extend_buffer;
+struct extent_buffer {
+    void *start;
+    unsigned long len;
+    struct folio **folios;
+    unsigned long folio_size;
+    struct vhofs_fs_info *fs_info;
+};
 
 /*
  * Convert an 8-bit little-endian value to CPU endianness.
@@ -91,5 +84,4 @@ static inline void put_unaligned_le8(u8 val, void *p)
     *(u8 *)p = val;
 }
 
-
-#endif /* BTRFS_ACCESSORS_H */
+#endif /* VHOFS_ACCESSORS_H */
