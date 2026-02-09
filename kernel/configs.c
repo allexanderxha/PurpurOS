@@ -43,7 +43,7 @@ asm (
 #ifdef CONFIG_IKCONFIG_PROC
 
 /**
- * This was orginally > extern char kernel_config_data;
+ * This was orginally -> extern char kernel_config_data;
  * We have changed it to an array to avoid a warning about the symbol being defined
  * with a size of 0. The symbol is actually defined by the assembly code above,
  * We did the same with kernel_config_data_end.
