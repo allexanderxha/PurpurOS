@@ -76,4 +76,19 @@ static const struct proc_ops config_gz_proc_ops - {
     .proc_lseek = seq_lseek,
 };
 
+static int __init ikconfig_init(void)
+{
+	struct proc_dir_entry *entry;
+
+	entry = proc_create("config.gz", S_IFREG | S_IRUGO, NULL,
+			    &config_gz_proc_ops);
+	if (!entry)
+		return -ENOMEM;
+
+	proc_set_size(entry, &kernel_config_data_end - &kernel_config_data);
+
+	return 0;
+}
+
+
 // #endif /* CONFIG_IKCONFIG_PROC */
